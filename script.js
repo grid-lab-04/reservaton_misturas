@@ -8,19 +8,19 @@ let reservasGlobais = {};
 let selecoesTemporarias = new Set();
 
 const instrucoesMaquinas = {
-    "1": "Computador de alto desempenho. Evite renderizações acima de 4 horas sem supervisão.",
-    "2": "Servidor de Processamento: Não reinicie o sistema sem autorização do técnico.",
-    "3": "Máquina básica: Ideal para navegação e edição de textos simples.",
-    "4": "Equipamento com GPU: Exclusivo para projetos de Deep Learning e Visão Computacional.",
-    "5": "Computador de testes: Os arquivos salvos no Desktop são apagados toda sexta-feira.",
-    "6": "Instruções para a nova máquina: Por favor, mantenha o periférico limpo.",
-    "7": "Instruções para a nova máquina: Por favor, mantenha o periférico limpo.",
-    "8": "Instruções para a nova máquina: Por favor, mantenha o periférico limpo.",
-    "9": "Instruções para a nova máquina: Por favor, mantenha o periférico limpo.",
-    "10": "Instruções para a nova máquina: Por favor, mantenha o periférico limpo.",
-    "11": "Instruções para a nova máquina: Por favor, mantenha o periférico limpo.",
-    "12": "Instruções para a nova máquina: Por favor, mantenha o periférico limpo.",
-    "13": "Instruções para a nova máquina: Por favor, mantenha o periférico limpo."
+    "1": "Coleta de agregados\ntexto texto1",
+    "2": "Homogeneização e quarteamento\ntexto texto2",
+    "3": "Granulometria\ntexto texto3",
+    "4": "Densidade e absorção\ntexto texto4",
+    "5": "Indice de forma\ntexto texto5",
+    "6": "Abrasão Los Angeles\ntexto texto6",
+    "7": "Adesividade\ntexto texto7",
+    "8": "Sanidade\ntexto texto8",
+    "9": "Dosagem Marshall\ntexto texto9",
+    "10": "Dosagem Superpave\ntexto texto10",
+    "11": "Compactação de Corpo de Prova\ntexto texto11",
+    "12": "Extração de ligante\ntexto texto12",
+    "13": "Secagem de material\ntexto texto13"
 };
 
 function configurarDataAtual() {
