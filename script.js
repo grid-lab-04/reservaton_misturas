@@ -45,12 +45,20 @@ function configurarDataAtual() {
     document.getElementById('data').value = dataFormatada;
 }
 
+function mostrarEquipamentos() {
+    const maquinaId = document.getElementById('maquina').value;
+    const labelInstrucoes = document.getElementById('texto-instrucoes');
+    
+    // Busca a instrução no objeto, ou usa um texto padrão se não encontrar
+    labelInstrucoes.innerText = equipamentosMaquinas[maquinaId] || "Sem equipamentos específicos.";
+}
+
 function mostrarInstrucoes() {
     const maquinaId = document.getElementById('maquina').value;
     const labelInstrucoes = document.getElementById('texto-instrucoes');
     
     // Busca a instrução no objeto, ou usa um texto padrão se não encontrar
-    labelInstrucoes.innerText = instrucoesMaquinas[maquinaId] || "Sem instruções específicas para esta máquina.";
+    labelInstrucoes.innerText = instrucoesMaquinas[maquinaId] || "Sem instruções específicas.";
 }
 
 configurarDataAtual();
@@ -71,8 +79,8 @@ function atualizarAgenda() {
     const dataSelecionada = seletorData.value;
     const maquinaSelecionada = seletorMaquina.value;
 
+    mostrarEquipamentos();
     mostrarInstrucoes();
-    equipamentosMaquinas();
 
     for (let hora = 0; hora < 24; hora++) {
         const horarioFormatado = `${hora}:00 - ${hora + 1}:00`;
