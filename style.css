@@ -197,6 +197,7 @@ input[type="checkbox"] {
     width: 100%;
     margin-top: 15px;
     font-size: 13px;
+    text-align: center;
     color: #636e72;
     background-color: #f1f2f6;
     padding: 8px 15px;
