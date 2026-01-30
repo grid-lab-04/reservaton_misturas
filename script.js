@@ -7,6 +7,22 @@ let reservasGlobais = {};
 // Esta "sacola" guarda as chaves selecionadas de vários dias/máquinas
 let selecoesTemporarias = new Set();
 
+const equipamentosMaquinas = {
+    "1": "--",
+    "2": "Quarteador",
+    "3": "Balança, Peneirador e Peneiras",
+    "4": "Balança e Estufa",
+    "5": "Balança, Crivos circulares e Crivos redutores",
+    "6": "Estufa, Balança e Peneiras",
+    "7": "Bequer, Estufa e Peneira",
+    "8": "Agitador, Balança, Bequer, Estufa e Peneira",
+    "9": "Balança, Compactador Marshall, Estufa, Misturador e Peneira",
+    "10": "Balança, Bomba de vácuo, Compactador Giratório, Estufa, Misturador e Peneira",
+    "11": "Cilindro, Compactador e Estufa",
+    "12": "Balança, Estufa Peneira e Rotarex",
+    "13": "Estufa"
+};
+
 const instrucoesMaquinas = {
     "1": "Coleta de agregados\ntexto texto1",
     "2": "Homogeneização e quarteamento\ntexto texto2",
@@ -56,6 +72,7 @@ function atualizarAgenda() {
     const maquinaSelecionada = seletorMaquina.value;
 
     mostrarInstrucoes();
+    equipamentosMaquinas();
 
     for (let hora = 0; hora < 24; hora++) {
         const horarioFormatado = `${hora}:00 - ${hora + 1}:00`;
