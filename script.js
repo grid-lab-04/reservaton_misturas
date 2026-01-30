@@ -13,7 +13,14 @@ const instrucoesMaquinas = {
     "3": "Máquina básica: Ideal para navegação e edição de textos simples.",
     "4": "Equipamento com GPU: Exclusivo para projetos de Deep Learning e Visão Computacional.",
     "5": "Computador de testes: Os arquivos salvos no Desktop são apagados toda sexta-feira.",
-    "6": "Instruções para a nova máquina: Por favor, mantenha o periférico limpo."
+    "6": "Instruções para a nova máquina: Por favor, mantenha o periférico limpo.",
+    "7": "Instruções para a nova máquina: Por favor, mantenha o periférico limpo.",
+    "8": "Instruções para a nova máquina: Por favor, mantenha o periférico limpo.",
+    "9": "Instruções para a nova máquina: Por favor, mantenha o periférico limpo.",
+    "10": "Instruções para a nova máquina: Por favor, mantenha o periférico limpo.",
+    "11": "Instruções para a nova máquina: Por favor, mantenha o periférico limpo.",
+    "12": "Instruções para a nova máquina: Por favor, mantenha o periférico limpo.",
+    "13": "Instruções para a nova máquina: Por favor, mantenha o periférico limpo."
 };
 
 function configurarDataAtual() {
