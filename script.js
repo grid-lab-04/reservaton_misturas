@@ -47,7 +47,7 @@ function configurarDataAtual() {
 
 function mostrarEquipamentos() {
     const maquinaId = document.getElementById('maquina').value;
-    const labelInstrucoes = document.getElementById('texto-instrucoes');
+    const labelInstrucoes = document.getElementById('texto-equipamentos');
     
     // Busca a instrução no objeto, ou usa um texto padrão se não encontrar
     labelInstrucoes.innerText = equipamentosMaquinas[maquinaId] || "Sem equipamentos específicos.";
