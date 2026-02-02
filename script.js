@@ -7,36 +7,40 @@ let reservasGlobais = {};
 // Esta "sacola" guarda as chaves selecionadas de vários dias/máquinas
 let selecoesTemporarias = new Set();
 
-const equipamentosMaquinas = {
-    "1": "--",
-    "2": "Quarteador",
-    "3": "Balança, Peneirador e Peneiras",
-    "4": "Balança e Estufa",
-    "5": "Balança, Crivos circulares e Crivos redutores",
-    "6": "Estufa, Balança e Peneiras",
-    "7": "Bequer, Estufa e Peneira",
-    "8": "Agitador, Balança, Bequer, Estufa e Peneira",
-    "9": "Balança, Compactador Marshall, Estufa, Misturador e Peneira",
-    "10": "Balança, Bomba de vácuo, Compactador Giratório, Estufa, Misturador e Peneira",
-    "11": "Cilindro, Compactador e Estufa",
-    "12": "Balança, Estufa Peneira e Rotarex",
-    "13": "Estufa"
-};
+function formatarInstrucao(texto) {
+  return texto.replace(
+    "Equipamentos:",
+    "<strong>Equipamentos:</strong>"
+  ).replace(/\n/g, "<br>");
+}
 
 const instrucoesMaquinas = {
-    "1": "Coleta de agregados\ntexto texto1",
-    "2": "Homogeneização e quarteamento\ntexto texto2",
-    "3": "Granulometria\ntexto texto3",
-    "4": "Densidade e absorção\ntexto texto4",
-    "5": "Indice de forma\ntexto texto5",
-    "6": "Abrasão Los Angeles\ntexto texto6",
-    "7": "Adesividade\ntexto texto7",
-    "8": "Sanidade\ntexto texto8",
-    "9": "Dosagem Marshall\ntexto texto9",
-    "10": "Dosagem Superpave\ntexto texto10",
-    "11": "Compactação de Corpo de Prova\ntexto texto11",
-    "12": "Extração de ligante\ntexto texto12",
-    "13": "Secagem de material\ntexto texto13"
+    "1": "O(a) solicitante pela coleta deverá enviar e-mail para Jorge Lucas (jorgelucas@det.ufc.br) com cópia para Romulo (romulojacome@yahoo.com.br) e Annie (annie@det.ufc.br). Para acompanhamento do técnico na coleta e procedimentos administrativos junto à ASTEF será necessário que a requisição seja feita com um período mínimo de 10 dias de antecedência. Sugere-se que o(a) interessado(a) se informe se há sacos para a coleta e baldes para o posterior armazenamento com um período mínimo de 30 dias de antecedência."
+        + "\n\nEquipamentos: Pá e Sacos.",
+    "2": "Seguir as instruções gerais apresentadas."
+        + "\n\nEquipamentos: Quarteador.",
+    "3": "Manter fechada a porta onde o peneirador está localizado."
+        + "\n\nEquipamentos: Balança, Peneirador e Peneiras.",
+    "4": "Seguir as instruções gerais apresentadas."
+        + "\n\nEquipamentos: Balança e Estufa.",
+    "5": "Seguir as instruções gerais apresentadas."
+        + "\n\nEquipamentos: Balança, Crivos circulares e Crivos redutores.",
+    "6": "Seguir as instruções gerais apresentadas."
+        + "\n\nEquipamentos: Estufa, Balança e Peneiras.",
+    "7": "Iniciar o ensaio sexta-feira para finalizar na segunda-feira."
+        + "\n\nEquipamentos: Bequer, Estufa e Peneira.",
+    "8": "Seguir as instruções gerais apresentadas."
+        + "\n\nEquipamentos: Agitador, Balança, Bequer, Estufa e Peneira.",
+    "9": "Seguir as instruções gerais apresentadas."
+        + "\n\nEquipamentos: Balança, Compactador Marshall, Estufa, Misturador e Peneira.",
+    "10": "Seguir as instruções gerais apresentadas."
+        + "\n\nEquipamentos: Balança, Bomba de vácuo, Compactador Giratório, Estufa, Misturador e Peneira.",
+    "11": "Seguir as instruções gerais apresentadas."
+        + "\n\nEquipamentos: Cilindro, Compactador e Estufa.",
+    "12": "Seguir as instruções gerais apresentadas."
+        + "\n\nEquipamentos: Balança, Estufa Peneira e Rotarex.",
+    "13": "Preferencialmente, colocar o material na estufa ao final do dia e retirar no começo da minha do dia seguinte."
+        + "\n\nEquipamentos: Estufa."
 };
 
 function configurarDataAtual() {
@@ -45,17 +49,9 @@ function configurarDataAtual() {
     document.getElementById('data').value = dataFormatada;
 }
 
-function mostrarEquipamentos() {
-    const maquinaId = document.getElementById('maquina').value;
-    const labelInstrucoes = document.getElementById('texto-equipamentos');
-    
-    // Busca a instrução no objeto, ou usa um texto padrão se não encontrar
-    labelInstrucoes.innerText = equipamentosMaquinas[maquinaId] || "Sem equipamentos específicos.";
-}
-
 function mostrarInstrucoes() {
     const maquinaId = document.getElementById('maquina').value;
-    const labelInstrucoes = document.getElementById('texto-instrucoes');
+    const labelInstrucoes = document.getElementById('texto-instrucoes').innerHTML = formatarInstrucao(instrucoesMaquinas[maquinaId]);
     
     // Busca a instrução no objeto, ou usa um texto padrão se não encontrar
     labelInstrucoes.innerText = instrucoesMaquinas[maquinaId] || "Sem instruções específicas.";
@@ -79,7 +75,6 @@ function atualizarAgenda() {
     const dataSelecionada = seletorData.value;
     const maquinaSelecionada = seletorMaquina.value;
 
-    mostrarEquipamentos();
     mostrarInstrucoes();
 
     for (let hora = 0; hora < 24; hora++) {
