@@ -1,4 +1,4 @@
-const URL_API = "https://script.google.com/macros/s/AKfycbwV7XwE9Xe8I0CZy8X6X_XFhLZXvQX6A7RqXIp38Xhj0OZwugvMMGQ0CeIlq_cImvKO/exec";
+const URL_API = "https://script.google.com/macros/s/AKfycbzMJgg01IRm5nvACN8ZisEKo6fjBVHoEqc50Xhbl3q2zLDnHK63oS_Pv7Tv_xqBKyeV/exec";
 
 const corpoAgenda = document.getElementById('corpo-agenda');
 const seletorData = document.getElementById('data');
@@ -122,6 +122,7 @@ async function reservarSelecionados() {
     const email = document.getElementById('email').value;
     const orientador = document.getElementById('orientador').value;
     const senhaInformada = document.getElementById('senha-lab').value;
+    const seletor = document.getElementById('maquina'); // Referência ao select
 
     if (!senhaInformada) return alert("Digite a senha do laboratório!");
     if (!nome || !email || !orientador) return alert("Preencha todos os dados!");
@@ -129,50 +130,50 @@ async function reservarSelecionados() {
 
     const btn = document.getElementById('btn-confirmar');
     btn.disabled = true;
-    const textoOriginal = btn.innerText;
-    btn.innerText = "Processando reservas...";
+    btn.innerText = "Processando...";
 
-    // Agora iteramos sobre a nossa "sacola" (Set)
-    for (let chave of selecoesTemporarias) {
-        // Extraímos a data e máquina da própria chave (Formato: YYYY-MM-DD-M1-H)
+    // Criamos a lista de reservas capturando o nome exibido no HTML
+    const listaReservas = Array.from(selecoesTemporarias).map(chave => {
         const partes = chave.split('-');
-        const dataAgend = `${partes[0]}-${partes[1]}-${partes[2]}`;
-        const numMaquina = partes[3].replace('M', '');
+        const idMaquina = partes[3].replace('M', '');
+        
+        // Esta linha busca o texto (ex: "Impressora 3D 02 - Bambu Lab") baseado no value
+        const nomeExibido = seletor.querySelector(`option[value="${idMaquina}"]`).text;
 
-        try {
-            const response = await fetch(URL_API, {
-                method: 'POST',
-                body: JSON.stringify({ 
-                    action: 'reservar', 
-                    senha: senhaInformada,
-                    chave: chave, 
-                    nome: nome,
-                    email: email,
-                    orientador: orientador,
-                    dataAgendamento: dataAgend,
-                    maquina: `Computador 0${numMaquina}` // Ajusta conforme seus nomes no HTML
-                })
-            });
+        return {
+            chave: chave,
+            data: `${partes[0]}-${partes[1]}-${partes[2]}`,
+            maquina: nomeExibido // Agora enviamos o nome completo e correto
+        };
+    });
 
-            const resultado = await response.text();
-            
-            if (resultado.includes("Erro: Senha Incorreta")) {
-                alert("A senha informada está incorreta!");
-                btn.disabled = false;
-                btn.innerText = textoOriginal;
-                return;
-            }
-        } catch (e) {
-            console.error("Erro ao reservar chave: " + chave);
+    try {
+        const response = await fetch(URL_API, {
+            method: 'POST',
+            body: JSON.stringify({ 
+                action: 'reservar_lote', 
+                senha: senhaInformada,
+                usuario: { nome, email, orientador }, // Isso garante que os dados cheguem ao e-mail
+                reservas: listaReservas
+            })
+        });
+
+        const resultado = await response.text();
+        
+        if (resultado.includes("Erro: Senha Incorreta")) {
+            alert("Senha incorreta!");
+        } else {
+            alert("Reservas confirmadas com sucesso!");
+            selecoesTemporarias.clear();
+            document.getElementById('senha-lab').value = "";
+            carregarReservas();
         }
+    } catch (e) {
+        alert("Erro na conexão.");
+    } finally {
+        btn.disabled = false;
+        btn.innerText = "Confirmar Reservas Selecionadas";
     }
-
-    alert("Todas as reservas foram concluídas com sucesso!");
-    selecoesTemporarias.clear(); // Limpa a sacola após o sucesso
-    document.getElementById('senha-lab').value = "";
-    btn.disabled = false;
-    btn.innerText = "Confirmar Reservas Selecionadas";
-    carregarReservas();
 }
 
 seletorData.addEventListener('change', atualizarAgenda);
