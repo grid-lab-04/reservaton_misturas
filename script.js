@@ -40,6 +40,8 @@ const instrucoesMaquinas = {
     "12": "Seguir as instruções gerais apresentadas."
         + "\n\nEquipamentos: Balança, Estufa Peneira e Rotarex.",
     "13": "Preferencialmente, colocar o material na estufa ao final do dia e retirar no começo da minha do dia seguinte."
+        + "\n\nEquipamentos: Estufa.",
+    "14": "Seguir as instruções gerais apresentadas."
         + "\n\nEquipamentos: Estufa."
 };
 
