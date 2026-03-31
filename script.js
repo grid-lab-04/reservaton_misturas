@@ -7,6 +7,9 @@ let reservasGlobais = {};
 // Esta "sacola" guarda as chaves selecionadas de vários dias/máquinas
 let selecoesTemporarias = new Set();
 
+// Impede selecionar datas anteriores a hoje no calendário
+document.getElementById('data').min = new Date().toISOString().split("T")[0];
+
 function formatarInstrucao(texto) {
   return texto.replace(
     "Equipamentos:",
