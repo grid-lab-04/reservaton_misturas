@@ -62,7 +62,8 @@ header p {
     gap: 12px;
     flex-wrap: wrap;
     justify-content: center;
-    width: 100%;
+    width: 66%;
+    flex-direction: column;
 }
 
 input, select {
