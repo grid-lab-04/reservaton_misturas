@@ -122,6 +122,11 @@ function gerenciarSelecao(checkbox) {
         : "Confirmar Reservas Selecionadas";
 }
 
+function validarEmail(email) {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(email);
+}
+
 async function reservarSelecionados() {
     const nome = document.getElementById('nome').value;
     const email = document.getElementById('email').value;
@@ -129,9 +134,10 @@ async function reservarSelecionados() {
     const senhaInformada = document.getElementById('senha-lab').value;
     const seletor = document.getElementById('maquina'); // Referência ao select
 
-    if (!senhaInformada) return alert("Digite a senha do laboratório!");
+    if (!senhaInformada)                return alert("Digite a senha do laboratório!");
     if (!nome || !email || !orientador) return alert("Preencha todos os dados!");
     if (selecoesTemporarias.size === 0) return alert("Selecione pelo menos um horário!");
+    if (!validarEmail(email))           return alert("Insira um e-mail válido.");
 
     const btn = document.getElementById('btn-confirmar');
     btn.disabled = true;
