@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento Lab Misturas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Sistema de agendamento do Laboratório de Misturas</h1>
+        <p>Selecione uma opção e reserve um horário.</p>
+    </header>
+
+    <main>
+        <section class="controles">          
+            <div id="container-equipamentos" style="margin-bottom: 5px auto; margin-top: 20px auto; width: 100%; padding: 15px; border-left: 5px solid #007bff; background-color: #f8f9fa; border-radius: 4px;">
+                <strong>INFORMAÇÕES GERAIS:</strong>
+                <p id="texto-equipamentos" style="margin-top: 5px; color: #555;"><strong>1.</strong> Utilizar equipamentos de proteção individual.</p>
+                <p id="texto-equipamentos" style="margin-top: 5px; color: #555;"><strong>2.</strong> Ensaios que gerarem resíduos, como poeira ou aquecimento de ligante, a(o) aluno(a) deverá manter o exaustor ligado durante todo processo.</p>
+                <p id="texto-equipamentos" style="margin-top: 5px; color: #555;"><strong>3.</strong> Mater o laboratório limpo e organizado durante e após sua utilização.</p>
+                <p id="texto-equipamentos" style="margin-top: 5px; color: #555;"><strong>4.</strong> Serão agendados os pedidos de uso do laboratório enviados até sexta-feira às 17:00.  Uso do laboratório fora do cronograma é possível, todavia depende da disponibilidade dos equipamentos e da obrigatoriedade de agendamento no seguinte endereço: <a href="https://grid-lab-04.github.io/reservaton_misturas/">https://grid-lab-04.github.io/reservaton_misturas/.</a></p>
+            </div>
+            
+            <div id="container-instrucoes" style="margin-bottom: 20px auto; margin-top: 5px auto; width: 100%; padding: 15px; border-left: 5px solid #f39c12; background-color: #f8f9fa; border-radius: 4px;">
+                <strong>INSTRUÇÕES PARA REALIZAÇÃO DA ATIVIDADE SELECIONADA:</strong>
+                <p id="texto-instrucoes" style="margin-top: 5px; color: #555;">Carregando...</p>
+            </div>
+            
+            <div class="linha-seguranca">
+                <input type="text" id="nome" placeholder="Nome e sobrenome">
+                <input type="email" id="email" placeholder="E-mail de contato" required>
+                <input type="text" id="orientador" placeholder="Nome do orientador">
+            </div>
+
+            <div class="linha">
+                <label for="data">Data:</label>
+                <input type="date" id="data">
+
+                <label for="maquina">Opções:</label>
+                <select id="maquina">
+                    <option value="1">Coleta de agregados</option>
+                    <option value="2">Homogeneização e quarteamento</option>
+                    <option value="3">Granulometria</option>
+                    <option value="4">Densidade e absorção </option>
+                    <option value="5">Indice de forma</option>
+                    <option value="6">Abrasão Los Angeles</option>
+                    <option value="7">Adesividade</option>
+                    <option value="8">Sanidade</option>
+                    <option value="9">Dosagem Marshall</option>
+                    <option value="10">Dosagem Superpave</option>
+                    <option value="11">Compactação de Corpo de Prova</option>
+                    <option value="12">Extração de ligante</option>
+                    <option value="13">Secagem de material</option>
+                    <option value="13">Fluir ligante</option>
+                </select>
+            </div>
+
+            <div class="area-confirmacao">
+                <div class="bloco-acao">
+                    <input type="password" id="senha-lab" placeholder="Senha">
+                    <button id="btn-confirmar" onclick="reservarSelecionados()">
+                        Confirmar Reservas Selecionadas
+                    </button>
+                    <p class="aviso-cancelamento">
+                        Solicitação de <strong>CANCELAMENTO</strong> apenas via e-mail: 
+                        <a href="mailto:jorgelucas@det.ufc.br">jorgelucas@det.ufc.br</a>
+                    </p>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="agenda">
+            <table id="tabela-horarios">
+                <thead>
+                    <tr>
+                        <th>Horário</th>
+                        <th>Status</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody id="corpo-agenda">
+                    </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
