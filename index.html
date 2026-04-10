@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="style.css"> 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet"> 
     <style> 
-        /* ESTILOS DOS CARDS DE ENSAIOS */
+        /* ESTILOS DOS CARDS DE ENSAIOS - AJUSTADO PARA EXIBIR TODOS */
         .cards-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            /* O auto-fill garante que os 13 cards se distribuam e pulem linha automaticamente */
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             gap: 20px;
             margin-bottom: 25px;
             width: 100%;
@@ -26,7 +27,7 @@
             text-align: center;
             display: flex;
             flex-direction: column;
-            height: 100%; /* Garante altura uniforme */
+            min-height: 220px; /* Define uma altura mínima para manter o padrão */
         }
 
         .ensaio-card:hover {
@@ -53,7 +54,7 @@
             padding: 12px;
             flex-grow: 1;
             display: flex;
-            flex-direction: column;
+            align-items: center;
             justify-content: center;
         }
 
